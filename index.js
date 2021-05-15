@@ -2,9 +2,10 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-const html = require('./src/htmlTemplate');
+const template = require('./src/htmlTemplate');
 const inquirer = require('inquirer');
 const fs = require('fs');
+
 
 // prompt for team managers info
 class websiteCreation {
@@ -14,7 +15,7 @@ class websiteCreation {
         this.interns = [];
     }
 
-    teamManager(manager) {
+    teamManager() {
         inquirer.prompt([
             {
                 type: 'text',
@@ -59,7 +60,7 @@ class websiteCreation {
             } else if (options === 'Add New Intern') {
                 this.addIntern();
             } else {
-                console.log('completed')
+                this.completeTeam();
             }
         })
     }
@@ -85,13 +86,13 @@ class websiteCreation {
             },
             {
                 type: 'text',
-                name: 'officeNum',
+                name: 'github',
                 message: "Engineer's GitHub: "
             }
         ])
         .then(({ name, id, email, github }) => {
             this.engineers.push(new Engineer(name, id, email, github))
-
+            console.log(this.engineers)
             this.selectOptions();
         })
     }
@@ -116,18 +117,54 @@ class websiteCreation {
             },
             {
                 type: 'text',
-                name: 'officeNum',
+                name: 'school',
                 message: "Intern's school: "
             }
         ])
-        .then(({ name, id, email, github }) => {
-            this.engineers.push(new Engineer(name, id, email, github))
+        .then(({ name, id, email, school }) => {
+            this.interns.push(new Intern(name, id, email, school))
+            console.log(this.interns)
 
             this.selectOptions();
         })
     }
+
+    writeToFile(data) {
+        fs.writeFile(`./dist/index.html`, data, err => {
+            if (err) {
+                console.log(err)
+                return
+            }
+            console.log('File Created Successfully!')
+        })
+    }
+
+    copyFile() {
+        fs.copyFile('./src/style.css', './dist/style.css', err => {
+            if (err) {
+                console.log(err);
+                return
+            }
+            console.log('Style Sheet Successfully Copied!')
+        });
+    };
+
+    completeTeam() {
+        console.log(this.engineers)
+        const data = template(this.manager, this.engineers);
+        this.writeToFile(data)
+        this.copyFile()
+    }
 }
 
-new websiteCreation().teamManager('Team Manager');
+const test = new websiteCreation();
+
+test.teamManager();
+
+
+
+
+
+
 
 
