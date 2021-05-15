@@ -151,7 +151,7 @@ class websiteCreation {
 
     completeTeam() {
         console.log(this.engineers)
-        const data = template(this.manager, this.engineers);
+        const data = template(this.manager, this.engineers, this.interns);
         this.writeToFile(data)
         this.copyFile()
     }
