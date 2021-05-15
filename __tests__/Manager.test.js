@@ -13,10 +13,10 @@ test('should generate a manager with an office number', () => {
     const manager = new Manager('Dakota', 20, 'example@yahoo.com', 5);
 
     expect(manager.officeNum).toBe(5);
-})
+});
 
 test('should return role as manager', () => {
     const manager = new Manager('Dakota', 20, 'example@yahoo.com', 5);
 
     expect(manager.getRole()).toBe('Manager');
-})
+});
