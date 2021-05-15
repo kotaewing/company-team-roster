@@ -11,7 +11,7 @@ function generateManager(manager) {
             <ul class="list-group list-group-flush">
               <li class="list-group-item">ID: ${id}</li>
               <li class="list-group-item">
-                Email: <a href="#" class="card-link">${email}</a>
+                Email: <a href="mailto: ${email}" class="card-link">${email}</a>
               </li>
               <li class="list-group-item">
                 Office number: ${officeNum}
@@ -73,7 +73,7 @@ function generateInterns(interns) {
 
 }
 
-function template(manager, engineers) {
+function template(manager, engineers, interns) {
 
     return `
     <!DOCTYPE html>
