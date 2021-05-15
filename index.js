@@ -2,30 +2,34 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-const generateTemplate = require('./src/htmlTemplate');
+const html = require('./src/htmlTemplate');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
 // prompt for team managers info
 class websiteCreation {
+    constructor() {
+        this.manager;
+        this.engineers = [];
+        this.interns = [];
+    }
 
-    teamManager() {
-        inquirer
-        .prompt([
+    teamManager(manager) {
+        inquirer.prompt([
             {
                 type: 'text',
                 name: 'name',
-                message: "Team manager's name: "
+                message: "Team Manager's name: "
             },
             {
                 type: 'text',
                 name: 'id',
-                message: "Team manager's employee id: "
+                message: "Team Manager's employee id: "
             },
             {
                 type: 'text',
                 name: 'email',
-                message: "Team manager's email: "
+                message: "Team Manager's email: "
             },
             {
                 type: 'text',
@@ -33,8 +37,10 @@ class websiteCreation {
                 message: "Team manager's office number: "
             }
         ])
-        .then(() => {
-            this.selectOptions()
+        
+        .then(({ name, id, email, officeNum }) => {
+            this.manager = new Manager(name, id, email, officeNum);
+            this.selectOptions();
         })
     }
     
@@ -60,14 +66,68 @@ class websiteCreation {
     
     // prompt for engineer info
     addEngineer() {
-        console.log('engineer');
+        inquirer
+        .prompt([
+            {
+                type: 'text',
+                name: 'name',
+                message: "Engineer's name: "
+            },
+            {
+                type: 'text',
+                name: 'id',
+                message: "Engineer's employee id: "
+            },
+            {
+                type: 'text',
+                name: 'email',
+                message: "Engineer's email: "
+            },
+            {
+                type: 'text',
+                name: 'officeNum',
+                message: "Engineer's GitHub: "
+            }
+        ])
+        .then(({ name, id, email, github }) => {
+            this.engineers.push(new Engineer(name, id, email, github))
+
+            this.selectOptions();
+        })
     }
     // prompt for intern info
     addIntern() {
-        console.log('intern')
+        inquirer
+        .prompt([
+            {
+                type: 'text',
+                name: 'name',
+                message: "Intern's name: "
+            },
+            {
+                type: 'text',
+                name: 'id',
+                message: "Intern's employee id: "
+            },
+            {
+                type: 'text',
+                name: 'email',
+                message: "Intern's email: "
+            },
+            {
+                type: 'text',
+                name: 'officeNum',
+                message: "Intern's school: "
+            }
+        ])
+        .then(({ name, id, email, github }) => {
+            this.engineers.push(new Engineer(name, id, email, github))
+
+            this.selectOptions();
+        })
     }
 }
 
-new websiteCreation().teamManager();
+new websiteCreation().teamManager('Team Manager');
 
 
