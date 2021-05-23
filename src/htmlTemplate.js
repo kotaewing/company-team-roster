@@ -36,7 +36,7 @@ function generateEngineers(engineers) {
                     Email: <a href="mailto: ${email}" class="card-link">${email}</a>
                   </li>
                   <li class="list-group-item">
-                    GitHub: <a href="https://github.com/${github}" class="card-link">${github}</a>
+                    GitHub: <a href="https://github.com/${github}" target="_blank" class="card-link">${github}</a>
                   </li>
                 </ul>
             </div>
