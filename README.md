@@ -1,5 +1,7 @@
 # company-team-roster
 ![screenshot of the terminal running the application](./assets/images/screenshot.png)
+![screenshot of the finished website](./assets/images/website-screenshot.png)
+
 
 ## Table of Contents
 * [Description](#description)
