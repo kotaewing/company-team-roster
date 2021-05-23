@@ -21,6 +21,8 @@ In order to install this app, clone the repository to your local machine by runn
 ## Usage
 After the dependencies are installed, simply run `node index` or `node index.js` in order to begin running the application.  Prompts will pop up asking questions about each employee.  Type in your answer and press enter to submit.  When prompted to enter a new engineer, intern, or complete team use the arrow keys to navigate between each option.  When you are on the desired option, press the enter key to select it.  For the GitHub prompt on the engineers, be careful to type in the username exactly how it is.  The HTML requires that it is exact in order to find the link to GitHub.  When you are done adding team members, select 'Complete Team' in order to generate the HTML file.
 
+To see a demonstration of how the app should work, visit https://youtu.be/I1mGDGN1mfQ
+
 ## Contributing
 Right now there are no contributing guidelines
 
