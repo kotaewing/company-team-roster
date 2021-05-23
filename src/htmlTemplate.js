@@ -1,3 +1,4 @@
+// take manager information and write it into an html card
 function generateManager(manager) {
     const { name, id, email, officeNum, role } = manager;
 
@@ -21,6 +22,8 @@ function generateManager(manager) {
     </div>
     `;
 }
+
+// for each engineer, take the information and return the html card
 function generateEngineers(engineers) {
     return engineers.map(({ name, id, email, github, role }) => {
         return `
@@ -47,6 +50,7 @@ function generateEngineers(engineers) {
 
 }
 
+// for each intern, take the information and return the html card
 function generateInterns(interns) {
     return interns.map(({ name, id, email, school, role }) => {
         return `
@@ -73,6 +77,7 @@ function generateInterns(interns) {
 
 }
 
+// generates the html boiler plate to append each card to 
 function template(manager, engineers, interns) {
 
     return `

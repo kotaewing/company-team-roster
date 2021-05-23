@@ -1,4 +1,4 @@
-const Employee = require('./lib/Employee');
+// load in all dependencies required
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
@@ -6,15 +6,16 @@ const template = require('./src/htmlTemplate');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-
-// prompt for team managers info
+// create object to initialize app
 class websiteCreation {
     constructor() {
         this.manager;
+        // create empty arrays to push new employees into
         this.engineers = [];
         this.interns = [];
     }
 
+    // prompt for team managers info
     teamManager() {
         inquirer.prompt([
             {
@@ -40,6 +41,8 @@ class websiteCreation {
         ])
         
         .then(({ name, id, email, officeNum }) => {
+            // create new Manager object with information from prompt and then 
+            // move to option selection
             this.manager = new Manager(name, id, email, officeNum);
             this.selectOptions();
         })
@@ -91,8 +94,8 @@ class websiteCreation {
             }
         ])
         .then(({ name, id, email, github }) => {
+            // create new Engineer object and push to array of engineers
             this.engineers.push(new Engineer(name, id, email, github))
-            console.log(this.engineers)
             this.selectOptions();
         })
     }
@@ -122,13 +125,13 @@ class websiteCreation {
             }
         ])
         .then(({ name, id, email, school }) => {
+            // create new Intern object and push to array of interns
             this.interns.push(new Intern(name, id, email, school))
-            console.log(this.interns)
-
             this.selectOptions();
         })
     }
 
+    // function to write HTML into a file saved in the dist directory
     writeToFile(data) {
         fs.writeFile(`./dist/index.html`, data, err => {
             if (err) {
@@ -139,6 +142,7 @@ class websiteCreation {
         })
     }
 
+    // function to copy style sheet into the dist directory
     copyFile() {
         fs.copyFile('./src/style.css', './dist/style.css', err => {
             if (err) {
@@ -149,17 +153,17 @@ class websiteCreation {
         });
     };
 
+    // runs the write and copy functions after the team is completely built
     completeTeam() {
-        console.log(this.engineers)
         const data = template(this.manager, this.engineers, this.interns);
         this.writeToFile(data)
         this.copyFile()
     }
 }
 
-const test = new websiteCreation();
+// create new websiteCreation object to initialize prompts
+new websiteCreation().teamManager();
 
-test.teamManager();
 
 
 
