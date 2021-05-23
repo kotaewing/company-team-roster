@@ -1,5 +1,5 @@
 # company-team-roster
-![screenshot of the terminal running the application](./assets/images/screenshot)
+![screenshot of the terminal running the application](./assets/images/screenshot.png)
 
 ## Table of Contents
 * [Description](#description)
